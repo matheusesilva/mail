@@ -90,22 +90,23 @@ function load_email(email_id) {
       let formatedBody = email['body'].replaceAll('wrote:', 'wrote: <br/>');
       formatedBody = formatedBody.replaceAll('___', '<br/>___<br/>');
 
-      
-
       body.innerHTML = formatedBody;
       reply.innerHTML = 'Reply';
       reply.classList.add('btn', 'btn-sm', 'btn-outline-primary');
       reply.addEventListener('click', () => reply_email(email_id));
       container.append(sender, recipients, subject, timestamp, reply, body);
+
+      // Set email as read
+      if (!email['read']) {
+        fetch(`/emails/${email_id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              read: true
+          })
+        })
+      }
   });
 
-  // Set email as read
-  fetch(`/emails/${email_id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-        read: true
-    })
-  })
 
 }
 
@@ -152,7 +153,9 @@ function load_mailbox(mailbox) {
                 archived: true
             })
           })
-          load_mailbox(mailbox);
+          setTimeout(function() {
+            load_mailbox(mailbox);
+          },100);
         })
         container.appendChild(button);
       } else if (mailbox == 'archive'){
@@ -165,7 +168,9 @@ function load_mailbox(mailbox) {
                 archived: false
             })
           })
-          load_mailbox('inbox');
+          setTimeout(function() {
+            load_mailbox(mailbox);
+          },100);
         })
         container.appendChild(button);
       }

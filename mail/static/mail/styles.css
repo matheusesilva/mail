@@ -2,6 +2,21 @@ textarea {
     min-height: 400px;
 }
 
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        height: 100%;
+    }
+    75% {
+        opacity: 0;
+        height: 100%;
+    }
+    100% {
+        opacity: 0;
+        height: 0%;
+    }
+}
+
 .email-container {
     padding: 0.5rem;
     outline: 1px solid #dddddd;
@@ -34,6 +49,11 @@ textarea {
         height: 2.2em;
         align-self: center;
     }
+    animation-name: desappear;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+
 }
 
 #email-view {
@@ -50,3 +70,4 @@ textarea {
         overflow-y: auto;
     }
 }
+
