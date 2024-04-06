@@ -1,0 +1,52 @@
+textarea {
+    min-height: 400px;
+}
+
+.email-container {
+    padding: 0.5rem;
+    outline: 1px solid #dddddd;
+    margin-top: 1px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    > div:nth-child(1) {
+        font-weight: 700;
+        grid-area: 1/1/2/2;
+
+    }
+    > div:nth-child(2) {
+        grid-area: 2/1/3/2;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space:nowrap;
+        max-width: 100%;
+    }
+    > div:nth-child(3) {
+        font-size: smaller;
+        grid-area: 3/1/4/2;
+    }
+    &.read-true {
+        background-color: #f3f3f3;
+    }
+    button {
+        margin: 0.5rem;
+        grid-row: 1/span 3;
+        height: 2.2em;
+        align-self: center;
+    }
+}
+
+#email-view {
+    span {
+        font-weight: 700;
+    }
+    > button {
+        margin-bottom: 1em;
+    }
+    > div:nth-child(6) {
+        padding: 1em;
+        border: solid 1px #dddddd;
+        height: 60vh;
+        overflow-y: auto;
+    }
+}
